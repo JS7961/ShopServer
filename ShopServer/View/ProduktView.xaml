@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="ShopServer.View.ProduktView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShopServer.View"
+             xmlns:ViewModel="clr-namespace:ShopServer.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.DataContext>
+        <ViewModel:ProduktViewModel/>
+    </UserControl.DataContext>
+    
+    
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="500"/>
+            <RowDefinition Height="250"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Grid.Row="0" Text="Produkte"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+
+
+        <ScrollViewer Grid.Row="1">
+
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding ItemListe}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="10" BorderThickness="1" BorderBrush="Green" Width="500" Height="200" Margin="10 10 10 10" CornerRadius="4" Background="Lavender">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25*"/>
+                                <RowDefinition Height="25*"/>
+                                <RowDefinition Height="25*"/>
+                                <RowDefinition Height="25*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0"  Grid.Column="0" Text="Id" FontSize="20"/>
+                            <TextBlock Grid.Row="1"  Grid.Column="0" Text="Name" FontSize="20"/>
+                            <TextBlock Grid.Row="2"  Grid.Column="0" Text="Preis" FontSize="20"/>
+                            <TextBlock Grid.Row="3"  Grid.Column="0" Text="Menge" FontSize="20"/>
+
+                            <TextBlock Grid.Row="0"  Grid.Column="1" Text="{Binding Id}" FontSize="20"/>
+                            <TextBlock Grid.Row="1"  Grid.Column="1" Text="{Binding Name}" FontSize="20"/>
+                            <TextBlock Grid.Row="2"  Grid.Column="1" Text="{Binding Preis}" FontSize="20"/>
+                            <TextBlock Grid.Row="3"  Grid.Column="1" Text="{Binding Menge}" FontSize="20"/>
+                            
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+        </ItemsControl>
+
+
+        </ScrollViewer>
+
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0"  Grid.Column="0" Text="Id" FontSize="20"/>
+            <TextBlock Grid.Row="1"  Grid.Column="0" Text="Name" FontSize="20"/>
+            <TextBlock Grid.Row="2"  Grid.Column="0" Text="Preis" FontSize="20"/>
+            <TextBlock Grid.Row="3"  Grid.Column="0" Text="Menge" FontSize="20"/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Item1.Id, UpdateSourceTrigger=PropertyChanged}"  VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Item1.Name, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Item1.Preis, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Item1.Menge, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontSize="20"/>
+
+
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Produkt Hinzufügen" Command="{Binding AddCommand}"/>
+
+        </Grid>
+        
+
+
+
+    </Grid>
+</UserControl>

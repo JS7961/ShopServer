@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="ShopServer.View.BestellungView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShopServer.View"
+             xmlns:ViewModel="clr-namespace:ShopServer.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <ViewModel:BestellungViewModel/>
+    </UserControl.DataContext>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Bestellung"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+
+        <TextBlock Grid.Row="1" Text="{Binding Bestellung1.AnzeigeText}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+
+        <TextBlock Grid.Row="2" Text="Bestellungspostenliste"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+
+        <TextBlock Grid.Row="3" Text="Gesamtpreis:"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+
+        <TextBlock Grid.Row="3" Text="{Binding Bestellung1.Gesamtpreis}"  HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20"/>
+
+
+
+        <ScrollViewer Grid.Row="4">
+
+            <ItemsControl Grid.Row="4" ItemsSource="{Binding BestellungsPostenListe}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" BorderThickness="1" BorderBrush="Green" Width="300" Height="300" Margin="10 10 10 10" CornerRadius="4" Background="Lavender">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25*"/>
+                                    <RowDefinition Height="25*"/>
+                                    <RowDefinition Height="25*"/>
+                                    <RowDefinition Height="25*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0"  Grid.Column="0" Text="Produkt Id" FontSize="20"/>
+                                <TextBlock Grid.Row="1"  Grid.Column="0" Text="Produkt Name" FontSize="20"/>
+                                <TextBlock Grid.Row="2"  Grid.Column="0" Text="Produkt Preis" FontSize="20"/>
+                                <TextBlock Grid.Row="3"  Grid.Column="0" Text="Bestellte Anzahl" FontSize="20"/>
+
+                                <TextBlock Grid.Row="0"  Grid.Column="1" Text="{Binding Produkt.Id}" FontSize="20" HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Row="1"  Grid.Column="1" Text="{Binding Produkt.Name}" FontSize="20" HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Row="2"  Grid.Column="1" Text="{Binding Produkt.Preis}" FontSize="20" HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Row="3"  Grid.Column="1" Text="{Binding Anzahl}" FontSize="20" HorizontalAlignment="Right"/>
+
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+            </ItemsControl>
+
+
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>
